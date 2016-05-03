@@ -21,25 +21,17 @@
           <grid row="0" column="0" row-span="3" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="d1d2a" class="javax.swing.JButton" binding="btnQuit">
+      <component id="d1d2a" class="javax.swing.JButton" binding="btnCancel">
         <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="&amp;Quit"/>
-        </properties>
-      </component>
-      <component id="631f6" class="javax.swing.JButton" binding="rdoReset">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="&amp;Reset"/>
+          <text value="C&amp;ancel"/>
         </properties>
       </component>
       <component id="5e276" class="javax.swing.JRadioButton" binding="rdoMonster1">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Monster Select 1"/>
@@ -47,7 +39,7 @@
       </component>
       <component id="96a83" class="javax.swing.JRadioButton" binding="rdoMonster2">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Monster Select 2"/>
@@ -55,13 +47,13 @@
       </component>
       <component id="4dca1" class="javax.swing.JRadioButton" binding="rdoMonster3">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Monster Select 3"/>
         </properties>
       </component>
-      <grid id="6e73c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="6e73c" binding="pnlMonsterDisplay" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -72,4 +64,11 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="rdoMonsterSelect">
+      <member id="5e276"/>
+      <member id="96a83"/>
+      <member id="4dca1"/>
+    </group>
+  </buttonGroups>
 </form>

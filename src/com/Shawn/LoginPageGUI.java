@@ -34,7 +34,9 @@ public class LoginPageGUI extends JFrame{
         btnEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                MonsterSelectGUI msGUI = new MonsterSelectGUI();
+                msGUI.setVisible(true);
+                setVisible(false);
             }
         });
         btnCancel.addActionListener(new ActionListener() {
