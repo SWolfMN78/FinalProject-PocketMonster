@@ -55,7 +55,6 @@ public class oUserInfo {
         try {
             ID = resultSet.getInt("UserID");
             loginName = resultSet.getString("login");
-
         }catch (SQLException sqle2){
             System.out.println(sqle2);
         }

@@ -7,7 +7,7 @@ public class Main {
     static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     static final String DB_Name = "dbpocketmon";
     static final String USER = "root";
-    static final String PASSWORD = "mySQLD0ggeh78!";
+    static final String PASSWORD = "";
 
     static Statement statement = null;
     static Connection conn = null;
