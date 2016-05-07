@@ -32,6 +32,8 @@ public class MainStageGUI extends JFrame{
 
         //access the set buttons.
         buttonConfig();
+        btnPlayTTT.enable(false);
+        btnPlayTTT.setRolloverEnabled(false);
 
     }
 

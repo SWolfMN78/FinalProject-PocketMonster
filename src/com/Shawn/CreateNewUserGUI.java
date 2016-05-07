@@ -1,5 +1,7 @@
 package com.Shawn;
 
+import sun.awt.WindowIDProvider;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,11 +19,18 @@ public class CreateNewUserGUI extends JFrame {
     public JTextField txtUserName;
     private JTextField txtLogin;
     private JTextField txtPassword;
-    private JTextField txtHeight;
-    private JTextField txtWeight;
     private JComboBox cmbxMonth;
     private JComboBox cmbxDay;
     private JComboBox cmbxYear;
+    private JComboBox cmbxHeight;
+    private JComboBox cmbxWeight;
+    private JTextField txtMonsterName;
+    private JRadioButton rdoMonster1;
+    private JRadioButton rdoMonster2;
+    private JRadioButton rdoMonster3;
+    private JPanel pnlMonsterDisplay;
+    MainStageGUI msGUI = new MainStageGUI();
+    oUserInfo userInfo = new oUserInfo();
 
     CreateNewUserGUI() {
         setContentPane(rootPanel);
@@ -34,6 +43,8 @@ public class CreateNewUserGUI extends JFrame {
         configureDDMonth();
         configureDDDay();
         configureDDYear();
+        configureDDWeight();
+        txtMonsterName.setText(""); //setting this to a blank string to be on the safe side.
     }
 
     public void buttonConfig() {
@@ -41,18 +52,22 @@ public class CreateNewUserGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isEmptyField()){
-                    MonsterSelectGUI msGUI = new MonsterSelectGUI();
-                    msGUI.setVisible(true);
-                    setVisible(false);
-                    oUserInfo userInfo = new oUserInfo();
                     //for reading sake figured this way would be easier.
                     userInfo.name = txtUserName.getText();
                     userInfo.loginName = txtLogin.getText();
                     userInfo.password = txtPassword.getText();
-                    userInfo.height = txtHeight.getText();
-                    userInfo.weight = txtWeight.getText();
+                    userInfo.height = Integer.valueOf((String)cmbxHeight.getSelectedItem());
+                    userInfo.weight = Integer.valueOf((String)cmbxWeight.getSelectedItem());
                     //userInfo.userDOB; //TODO come back and add information on if this will be added.
                     userInfo.createUserInSQL();
+
+                    if(isMonsterNameBlank() == true){
+                        msGUI.setVisible(true);
+                        setVisible(false);
+                    } else if (isMonsterNameBlank() == false){
+                        JOptionPane.showMessageDialog(rootPanel, "You must select a monster to move forward.","Select Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -63,8 +78,10 @@ public class CreateNewUserGUI extends JFrame {
                 txtUserName.setText("");
                 txtLogin.setText("");
                 txtPassword.setText("");
-                txtHeight.setText("");
-                txtWeight.setText("");
+                txtMonsterName.setText("");
+                rdoMonster1.setSelected(false);
+                rdoMonster2.setSelected(false);
+                rdoMonster3.setSelected(false);
                 cmbxMonth.setSelectedIndex(0);
                 cmbxDay.setSelectedIndex(0);
                 cmbxYear.setSelectedIndex(0);
@@ -82,8 +99,11 @@ public class CreateNewUserGUI extends JFrame {
     }
 
     public boolean isEmptyField(){
-        if (txtLogin.getText().equals("")){
-            JOptionPane.showMessageDialog(rootPanel, "Information must be entered into the Login field");
+        //if the text fields are blank then fire a msg.
+        if (txtLogin.getText().trim().equals("") || txtUserName.getText().trim().equals("")
+                || txtPassword.getText().trim().equals("") || txtMonsterName.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(rootPanel, "Fill in all text fields to create your account!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return true;
         } return false;
     }
@@ -104,5 +124,20 @@ public class CreateNewUserGUI extends JFrame {
         for (int x = 101; x > -1; x--) {  //not that it wouldn't happen but I wanted this in here.
             cmbxYear.addItem (2016 - x);
         }
+    }
+    public void configureDDHeight(){
+        //set the drop down to display a range of fights to select from.
+
+    }
+    public void configureDDWeight(){
+        for (int x = 100; x < 300; x++){
+            cmbxWeight.addItem(x);
+        }
+    }
+    public boolean isMonsterNameBlank(){
+        //user must input a name for their monster.
+        if (txtMonsterName.getText().trim().equals("")){
+            return false; //name is blank.
+        } return true; //name is filled in.
     }
 }

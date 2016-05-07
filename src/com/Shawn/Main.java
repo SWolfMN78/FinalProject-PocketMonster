@@ -3,26 +3,32 @@ package com.Shawn;
 import java.sql.*;
 
 public class Main {
+
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     static final String DB_Name = "dbpocketmon";
     static final String USER = "root";
-    static final String PASSWORD = "";
+    static final String PASSWORD = "mySQLD0ggeh78!";
 
     static Statement statement = null;
     static Connection conn = null;
     static ResultSet rs = null;
     static int userID;
+    static oUserInfo userInfo = new oUserInfo();
+
 
     public static void main(String[] args) {
-	// This is my final project - desired outcome is to create an application which users can select a digitial play
+        // This is my final project - desired outcome is to create an application which users can select a digitial play
         //mate and fitness monster.  Users will be able to create and load accounts, track progress and play a simple game
         //with their pocket monster by the end.
         //extras - play games and have the monster react to the win/loss ratio, show prgress of monster over time, select new monsters.
             //raise new monsters, fire specilized errors pending different actions.
-        OpeningPageGUI opGUI = new OpeningPageGUI(); //Load up the opening screen.
+
         // TODO the user input page is pending changes - may move this to a dialog box instead.
+        OpeningPageGUI opGUI; //Load up the opening screen.
+        opGUI = new OpeningPageGUI();
         setup(); //set up connection to database.
+
     }
 
     public static void setup(){

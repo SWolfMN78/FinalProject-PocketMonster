@@ -17,6 +17,8 @@ public class LoginPageGUI extends JFrame{
     private JButton btnCancel;
     private JTextField txtLogin;
     private JTextField txtPassword;
+    private String userLogin;
+    private String userPassword;
 
     LoginPageGUI(){
         setContentPane(rootPanel);
@@ -27,17 +29,26 @@ public class LoginPageGUI extends JFrame{
 
         //access the set buttons.
         buttonConfig();
-
     }
 
     public void buttonConfig(){
         btnEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MonsterSelectGUI msGUI = new MonsterSelectGUI();
-                msGUI.setVisible(true);
-                setVisible(false);
-            }
+                MainStageGUI msGUI = new MainStageGUI();
+                userLogin = txtLogin.getText();
+                userPassword = txtPassword.getText();
+                Main.userInfo.logInSQLUser(userLogin, userPassword); //call the user information and access the prepS & rs.
+
+                if (Main.userInfo.ID > 0) {
+                    //if it comes back as good (we have a valid ID) then we can
+                    msGUI.setVisible(true);
+                    setVisible(false);
+                }else {
+                    JOptionPane.showMessageDialog(rootPanel, "Please check your login & password, the one you entered did not match",
+                          "Error", JOptionPane.ERROR_MESSAGE);
+                }
+        }
         });
         btnCancel.addActionListener(new ActionListener() {
             @Override
