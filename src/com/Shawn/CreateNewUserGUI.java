@@ -1,7 +1,5 @@
 package com.Shawn;
 
-import sun.awt.WindowIDProvider;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,8 +27,11 @@ public class CreateNewUserGUI extends JFrame {
     private JRadioButton rdoMonster2;
     private JRadioButton rdoMonster3;
     private JPanel pnlMonsterDisplay;
+
+    String monsterName;
+    int MonsterID;
+
     MainStageGUI msGUI = new MainStageGUI();
-    oUserInfo userInfo = new oUserInfo();
 
     CreateNewUserGUI() {
         setContentPane(rootPanel);
@@ -44,6 +45,7 @@ public class CreateNewUserGUI extends JFrame {
         configureDDDay();
         configureDDYear();
         configureDDWeight();
+        configureDDHeight();
         txtMonsterName.setText(""); //setting this to a blank string to be on the safe side.
     }
 
@@ -53,18 +55,27 @@ public class CreateNewUserGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!isEmptyField()){
                     //for reading sake figured this way would be easier.
-                    userInfo.name = txtUserName.getText();
-                    userInfo.loginName = txtLogin.getText();
-                    userInfo.password = txtPassword.getText();
-                    userInfo.height = Integer.valueOf((String)cmbxHeight.getSelectedItem());
-                    userInfo.weight = Integer.valueOf((String)cmbxWeight.getSelectedItem());
+                    Main.userInfo.name = txtUserName.getText();
+                    Main.userInfo.loginName = txtLogin.getText();
+                    Main.userInfo.password = txtPassword.getText();
+                    Main.userInfo.height = convertHeight(cmbxHeight.getSelectedItem().toString());
+                    String blah = cmbxWeight.getSelectedItem().toString();
+                    Main.userInfo.weight = Integer.valueOf(blah);
+                    Main.userInfo.monName = txtMonsterName.getText();
+                    if (rdoMonster1.isSelected()){
+                        Main.userInfo.monImageID = 1;
+                    }else if (rdoMonster2.isSelected()){
+                        Main.userInfo.monImageID = 2;
+                    }else if (rdoMonster3.isSelected()){
+                        Main.userInfo.monImageID = 3;
+                    }
                     //userInfo.userDOB; //TODO come back and add information on if this will be added.
-                    userInfo.createUserInSQL();
 
-                    if(isMonsterNameBlank() == true){
+                    if(isMonsterSelected() == true){
                         msGUI.setVisible(true);
                         setVisible(false);
-                    } else if (isMonsterNameBlank() == false){
+                        Main.userInfo.createUserInSQL(); //if everything above works then enter and save.
+                    } else if (isMonsterSelected() == false){
                         JOptionPane.showMessageDialog(rootPanel, "You must select a monster to move forward.","Select Error",
                                 JOptionPane.ERROR_MESSAGE);
                     }
@@ -125,19 +136,43 @@ public class CreateNewUserGUI extends JFrame {
             cmbxYear.addItem (2016 - x);
         }
     }
-    public void configureDDHeight(){
+    public void configureDDHeight() {
         //set the drop down to display a range of fights to select from.
-
+        for (int x = 40; x < 81; x++) {
+            cmbxHeight.addItem(convertHeight(x));
+        }
     }
     public void configureDDWeight(){
-        for (int x = 100; x < 300; x++){
+        for (int x = 100; x < 301; x++){
             cmbxWeight.addItem(x);
         }
     }
-    public boolean isMonsterNameBlank(){
+    public boolean isMonsterSelected(){
         //user must input a name for their monster.
-        if (txtMonsterName.getText().trim().equals("")){
-            return false; //name is blank.
-        } return true; //name is filled in.
+        if (rdoMonster1.isSelected() == true || rdoMonster2.isSelected() == true || rdoMonster3.isSelected() == true ){
+            return true; //insure that a monster is selected
+        } return false; //if monster is not selected
+    }
+
+    public int convertHeight(String height){
+        //7' 5" - converting this back into an inch so that we can use it in the database.
+        height = height.replace("'", "");
+        height = height.replace("\"", "");
+        int feet;
+        int inches;
+
+        feet = Integer.valueOf(height.split(" ")[0]);
+        inches = Integer.valueOf(height.split(" ")[1]);
+        return feet *12 +inches;
+    }
+    public String convertHeight(int height) {
+        //used to convert an integer to a string.
+        int feet;
+        int inches;
+
+        inches = height % 12;
+        feet = (height - inches) / 12;
+
+        return feet + "' " + inches + "\"";
     }
 }

@@ -27,7 +27,6 @@ public class OpeningPageGUI extends JFrame {
 
         //set up the buttons for the application
         buttonconfig();
-
     }
 
     public void buttonconfig(){
@@ -56,6 +55,5 @@ public class OpeningPageGUI extends JFrame {
                 System.exit(0);
             }
         });
-
     }
 }

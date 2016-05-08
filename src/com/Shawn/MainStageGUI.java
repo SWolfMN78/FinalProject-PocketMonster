@@ -5,6 +5,14 @@ import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Locale;
+import java.sql.Date.*;
 
 /**
  * Created by Wolfknightx on 4/25/2016.
@@ -22,6 +30,8 @@ public class MainStageGUI extends JFrame{
     private JButton btnNewWeight;
     private JButton btnPlayTTT;
     private JPanel pnlPictureBox;
+    java.util.Date x = new Date();
+    java.sql.Date time = new java.sql.Date(x.getTime());
 
     MainStageGUI(){
         setContentPane(rootPanel);
@@ -32,9 +42,6 @@ public class MainStageGUI extends JFrame{
 
         //access the set buttons.
         buttonConfig();
-        btnPlayTTT.enable(false);
-        btnPlayTTT.setRolloverEnabled(false);
-
     }
 
     public void buttonConfig(){
@@ -61,37 +68,120 @@ public class MainStageGUI extends JFrame{
                 setVisible(false);
             }
         });
+
         btnNewExcersise.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nonFunction();
+                //create variables to store the information for the user's measurements.
+                int cardioTime;
+                java.sql.Date excersiseTime = time;
+
+                //pull the information from the user
+                String dlExcersiseInfo = JOptionPane.showInputDialog("Please enter time spent doing cardio in minutes.");
+
+                //push the information into sql
+                try{
+                    if (dlExcersiseInfo.equals("") || dlExcersiseInfo.equals(0)){
+                        JOptionPane.showMessageDialog(rootPanel, "You must enter a value greater than 0", "Error", JOptionPane.ERROR);
+                    }
+                    cardioTime = Integer.parseInt(dlExcersiseInfo); //parse the information to insure a digit is entered.
+                    String preparedStatement = "Insert into excercise (idUser_Excer, Date, cardioTime) values (?, ?, ?)";
+                    PreparedStatement pswInsert = Main.conn.prepareStatement(preparedStatement);
+                    pswInsert.setInt(1, Main.userInfo.ID);
+                    pswInsert.setDate(2, excersiseTime);
+                    pswInsert.setInt(3, cardioTime);
+                    pswInsert.execute();
+                    pswInsert.close();
+                }catch (SQLException sqle){
+                    System.out.println("Information not saved, Couldn't push the information to the database." + sqle);
+                }
             }
         });
         btnNewMeasurements.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nonFunction();
-            }
-        });
-        btnPlayTTT.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nonFunction();
+                //create variables to store the information for the user's measurements.
+                int hipMeasurement;
+                int chestMeasure;
+                java.sql.Date measureTime = time;
+
+                //pull the information from the user
+                String dlMeasureInfo1 = JOptionPane.showInputDialog("Please enter your hip measurement (in inches).");
+                String dlMeasureInfo2 = JOptionPane.showInputDialog("Please enter your chest measurement (in inches).");
+
+                //push the information into sql
+                try{
+                    if (dlMeasureInfo1.equals("") || dlMeasureInfo1.equals(0) && dlMeasureInfo2.equals("")
+                            && dlMeasureInfo2.equals(0)){
+                        JOptionPane.showMessageDialog(rootPanel, "You must enter a value greater than 0", "Error", JOptionPane.ERROR);
+                    }
+                    hipMeasurement = Integer.parseInt(dlMeasureInfo1); //parse the information to insure a digit is entered.
+                    chestMeasure = Integer.parseInt(dlMeasureInfo2);
+                    String preparedStatement = "Insert into measurements (idUser_Measure, Date, hipMeasure, chestMeasure) values (?, ?, ?, ?)";
+                    PreparedStatement pswInsert = Main.conn.prepareStatement(preparedStatement);
+                    pswInsert.setInt(1, Main.userInfo.ID);
+                    pswInsert.setDate(2, measureTime);
+                    pswInsert.setInt(3, hipMeasurement);
+                    pswInsert.setInt(4, chestMeasure);
+                    pswInsert.execute();
+                    pswInsert.close();
+                }catch (SQLException sqle){
+                    System.out.println("Information not saved, Couldn't push the information to the database." + sqle);
+                }
             }
         });
         btnNewWaterLog.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nonFunction();
-            }
-        });
-        btnNewHeight.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nonFunction();
+                int waterConsumed;
+                java.sql.Date waterTime = time;
+
+                String dlWaterInfo = JOptionPane.showInputDialog("Please enter the amount of water entered.");
+
+                try{
+                    if (dlWaterInfo.equals("") || dlWaterInfo.equals(0)){
+                        JOptionPane.showMessageDialog(rootPanel, "You must enter a value greater than 0", "Error", JOptionPane.ERROR);
+                    }
+                    waterConsumed = Integer.parseInt(dlWaterInfo);
+                    String preparedStatement = "Insert into Water (idUser_Water, Date, Waterconsumed) values (?, ?, ?)";
+                    PreparedStatement pswInsert = Main.conn.prepareStatement(preparedStatement);
+                    pswInsert.setInt(1, Main.userInfo.ID);
+                    pswInsert.setDate(2, waterTime);
+                    pswInsert.setInt(3, waterConsumed);
+                    pswInsert.execute();
+                    pswInsert.close();
+                }catch (SQLException sqle){
+                    System.out.println("Information not saved, Couldn't push the information to the database." + sqle);
+                }
             }
         });
         btnNewWeight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int newWeight;
+                java.sql.Date weightTime = time;
+
+                String dlWeightInfo = JOptionPane.showInputDialog("Please enter your new weight value in pounds.");
+
+                try{
+                    if (dlWeightInfo.equals("") || dlWeightInfo.equals(0)){
+                        JOptionPane.showMessageDialog(rootPanel, "You must enter a value greater than 0", "Error", JOptionPane.ERROR);
+                    }
+                    newWeight = Integer.parseInt(dlWeightInfo);
+                    String preparedStatement = "Insert into weight (iduser_Weight, wtDate, Weight) values (?, ?, ?)";
+                    PreparedStatement pswInsert = Main.conn.prepareStatement(preparedStatement);
+                    pswInsert.setInt(1, Main.userInfo.ID);
+                    pswInsert.setDate(2, weightTime);
+                    pswInsert.setInt(3, newWeight);
+                    pswInsert.execute();
+                    pswInsert.close();
+                }catch (SQLException sqle){
+                    System.out.println("Information not saved, Couldn't push the information to the database." + sqle);
+                }
+            }
+        });
+
+        btnPlayTTT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 nonFunction();
@@ -100,7 +190,7 @@ public class MainStageGUI extends JFrame{
     }
 
     public void nonFunction(){
-        JOptionPane.showMessageDialog(rootPanel, "Function not ready yet.", "Pending Operation",
+        JOptionPane.showMessageDialog(rootPanel, "Feature available upon purchase!", "Pending Operation",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 }
