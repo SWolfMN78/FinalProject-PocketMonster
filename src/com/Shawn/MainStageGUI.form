@@ -8,28 +8,12 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="7d9e9" class="javax.swing.JButton" binding="btnPrint">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="&amp;Print"/>
-        </properties>
-      </component>
       <component id="6d223" class="javax.swing.JButton" binding="btnQuit">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="&amp;Quit"/>
-        </properties>
-      </component>
-      <component id="50679" class="javax.swing.JButton" binding="btnReviewData">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="&amp;Review Data"/>
         </properties>
       </component>
       <hspacer id="aebb3">
@@ -67,14 +51,6 @@
           <text value="New Water Log"/>
         </properties>
       </component>
-      <component id="ce41" class="javax.swing.JButton" binding="btnPlayTTT">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Play TicTacToe"/>
-        </properties>
-      </component>
       <component id="8d706" class="javax.swing.JButton" binding="btnNewExcersise">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -89,6 +65,22 @@
         </constraints>
         <properties>
           <text value="New Measurements"/>
+        </properties>
+      </component>
+      <component id="50679" class="javax.swing.JButton" binding="btnReviewData">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="&amp;Review Data"/>
+        </properties>
+      </component>
+      <component id="ce41" class="javax.swing.JButton" binding="btnPlayTTT">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Play TicTacToe"/>
         </properties>
       </component>
     </children>

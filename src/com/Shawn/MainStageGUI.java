@@ -15,7 +15,6 @@ import java.util.Date;
  */
 public class MainStageGUI extends JFrame{
     private JPanel rootPanel;
-    private JButton btnPrint;
     private JButton btnNewExcersise;
     private JButton btnNewWaterLog;
     private JButton btnQuit;
@@ -40,18 +39,13 @@ public class MainStageGUI extends JFrame{
     }
 
     public void buttonConfig(){
-        btnPrint.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nonFunction();
-            }
-        });
         btnReviewData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nonFunction();
-
-                // TODO insure that when this window is opened that only the ADMIN has rights to alter the tables.
+                //opens the Data Review GUI information for the current user to review their information.
+                DataReviewGUI drGUI = new DataReviewGUI();
+                drGUI.setVisible(true);
+                setVisible(false);
             }
         });
         btnQuit.addActionListener(new ActionListener() {
