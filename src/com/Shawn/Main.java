@@ -8,7 +8,7 @@ public class Main {
     static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     static final String DB_Name = "dbpocketmon";
     static final String USER = "root";
-    static final String PASSWORD = "";
+    static final String PASSWORD = "mySQLD0ggeh78!";
 
     static Statement statement = null;
     static Connection conn = null;
@@ -49,6 +49,28 @@ public class Main {
         }catch (SQLException sqle){
             System.out.println("The cubes table already exist, check SQL for any possible issues.");
             System.out.println(sqle);
+        }
+    }
+
+    public static void shutdown(){
+        //shut down the connection to SQL.
+        try {
+            if (statement != null) {
+                statement.close();
+                System.out.println("Statement closed");
+            }
+        } catch (SQLException se) {
+            //Closing the connection could throw an exception too
+            se.printStackTrace();
+        }
+
+        try {
+            if (conn != null) {
+                conn.close();  //Close connection to database
+                System.out.println("Database connection closed");
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
     }
 }

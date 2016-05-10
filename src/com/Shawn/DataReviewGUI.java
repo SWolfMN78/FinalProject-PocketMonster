@@ -117,10 +117,12 @@ public class DataReviewGUI extends JFrame{
         btnClose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Logging Admin out");
+                System.out.println("Logging out of review mode, thank you!");
+                Main.shutdown();
                 OpeningPageGUI opGUI = new OpeningPageGUI(); //log the admin out and go back to the screen
                 opGUI.setVisible(true);
                 setVisible(false);
+                Main.setup(); //set up a new connection.
             }
         });
     }

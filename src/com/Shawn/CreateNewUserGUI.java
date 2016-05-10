@@ -102,9 +102,11 @@ public class CreateNewUserGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(rootPanel, "Going back to main page.", "Cancel", JOptionPane.CANCEL_OPTION);
+                Main.shutdown(); //close the connection
                 OpeningPageGUI opGUI = new OpeningPageGUI(); //cancel out of this screen and open up the main page.
                 opGUI.setVisible(true);
                 setVisible(false);
+                Main.setup();
             }
         });
     }

@@ -52,9 +52,11 @@ public class MainStageGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(rootPanel,"Going back to main page.", "Cancel",JOptionPane.CANCEL_OPTION);
+                Main.shutdown();
                 OpeningPageGUI opGUI = new OpeningPageGUI(); //cancel out of this screen and open up the main page.
                 opGUI.setVisible(true);
                 setVisible(false);
+                Main.setup(); //open up a new connection - this should allow a new user to log in.
             }
         });
 

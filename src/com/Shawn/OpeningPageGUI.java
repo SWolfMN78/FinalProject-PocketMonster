@@ -52,6 +52,7 @@ public class OpeningPageGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Exiting program.");  //only from here will Quit close out to the entire program.
+                Main.shutdown(); //close out of the program completely.
                 System.exit(0);
             }
         });
