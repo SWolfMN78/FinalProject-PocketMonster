@@ -58,7 +58,7 @@ public class LoginPageGUI extends JFrame{
                 OpeningPageGUI opGUI = new OpeningPageGUI(); //cancel out of this screen and open up the main page.
                 opGUI.setVisible(true);
                 setVisible(false);
-                Main.setup(); //open a new connection
+                Main.shutdown(); //
             }
         });
     }

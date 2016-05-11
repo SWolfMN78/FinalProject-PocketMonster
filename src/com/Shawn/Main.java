@@ -8,7 +8,7 @@ public class Main {
     static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     static final String DB_Name = "dbpocketmon";
     static final String USER = "root";
-    static final String PASSWORD = "mySQLD0ggeh78!";
+    static final String PASSWORD = "";
 
     static Statement statement = null;
     static Connection conn = null;
@@ -54,6 +54,7 @@ public class Main {
 
     public static void shutdown(){
         //shut down the connection to SQL.
+        userInfo = new oUserInfo(); //clear the ID information out so that we don't have people using
         try {
             if (statement != null) {
                 statement.close();
