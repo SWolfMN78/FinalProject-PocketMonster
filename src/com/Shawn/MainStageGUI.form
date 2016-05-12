@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="916" height="1169"/>
+      <xy x="20" y="20" width="1353" height="1286"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -41,7 +41,17 @@
         </constraints>
         <properties/>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="3098f" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="Final MonsterImg Main Page.png"/>
+              <text value="Enter your logging Info"/>
+            </properties>
+          </component>
+        </children>
       </grid>
       <component id="71439" class="javax.swing.JButton" binding="btnNewWaterLog">
         <constraints>
