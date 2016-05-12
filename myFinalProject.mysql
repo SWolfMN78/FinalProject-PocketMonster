@@ -1,0 +1,171 @@
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+--
+-- Host: localhost    Database: dbpocketmon
+-- ------------------------------------------------------
+-- Server version	5.7.12-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `excercise`
+--
+
+DROP TABLE IF EXISTS `excercise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `excercise` (
+  `activityid` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser_Excer` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `cardioTime` int(11) DEFAULT NULL,
+  PRIMARY KEY (`activityid`),
+  UNIQUE KEY `activityid_UNIQUE` (`activityid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `excercise`
+--
+
+LOCK TABLES `excercise` WRITE;
+/*!40000 ALTER TABLE `excercise` DISABLE KEYS */;
+INSERT INTO `excercise` VALUES (1,1,'2016-05-07',50),(2,1,'2016-05-08',60),(3,1,'2016-05-11',50);
+/*!40000 ALTER TABLE `excercise` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `measurements`
+--
+
+DROP TABLE IF EXISTS `measurements`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `measurements` (
+  `activityID` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser_Measure` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `hipMeasure` int(11) DEFAULT NULL,
+  `chestMeasure` int(11) DEFAULT NULL,
+  PRIMARY KEY (`activityID`),
+  UNIQUE KEY `activityID_UNIQUE` (`activityID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `measurements`
+--
+
+LOCK TABLES `measurements` WRITE;
+/*!40000 ALTER TABLE `measurements` DISABLE KEYS */;
+INSERT INTO `measurements` VALUES (1,1,'2016-05-07',60,45),(2,1,'2016-05-08',48,50);
+/*!40000 ALTER TABLE `measurements` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `idUser` int(11) NOT NULL AUTO_INCREMENT,
+  `Login` varchar(50) NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `height` int(11) NOT NULL,
+  `Weight` int(11) NOT NULL,
+  `MonsterID` int(11) NOT NULL,
+  `MonsterName` varchar(50) NOT NULL,
+  `TimesWonTTT` int(11) NOT NULL DEFAULT '0',
+  `TimesLostTTT` int(11) NOT NULL DEFAULT '0',
+  `TimesDrawTTT` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idUser`),
+  UNIQUE KEY `idUser_UNIQUE` (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'sj','1234','sj',40,100,1,'coco',0,0,0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `water`
+--
+
+DROP TABLE IF EXISTS `water`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `water` (
+  `activityid` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser_Water` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `waterconsumed` int(11) NOT NULL,
+  PRIMARY KEY (`activityid`),
+  UNIQUE KEY `activityid_UNIQUE` (`activityid`),
+  KEY `idUserWater_idx` (`idUser_Water`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `water`
+--
+
+LOCK TABLES `water` WRITE;
+/*!40000 ALTER TABLE `water` DISABLE KEYS */;
+INSERT INTO `water` VALUES (9,1,'2016-05-08',12);
+/*!40000 ALTER TABLE `water` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `weight`
+--
+
+DROP TABLE IF EXISTS `weight`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `weight` (
+  `activityID` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser_Weight` int(11) NOT NULL,
+  `wtdate` date NOT NULL,
+  `weight` int(11) NOT NULL,
+  PRIMARY KEY (`activityID`),
+  UNIQUE KEY `activityID_UNIQUE` (`activityID`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='Weights table to handle the storage of current user weights.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `weight`
+--
+
+LOCK TABLES `weight` WRITE;
+/*!40000 ALTER TABLE `weight` DISABLE KEYS */;
+INSERT INTO `weight` VALUES (18,1,'2016-05-08',100),(19,1,'2016-05-08',250);
+/*!40000 ALTER TABLE `weight` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-05-12 16:35:05
