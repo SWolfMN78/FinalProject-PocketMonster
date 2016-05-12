@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Wolfknightx on 4/25/2016.
@@ -18,12 +19,27 @@ public class OpeningPageGUI extends JFrame {
     private JButton btnQuit;
     private JPanel PictureDisplay;
 
+
     public OpeningPageGUI() {
         setContentPane(rootPanel);
         setPreferredSize(new Dimension(650, 650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
+//        BufferedImage tPictureLoaded = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+//        final BufferedImage image = ImageIO.read(new File("Monster Test Picture1.png"));
+//
+//        JPanel pane = new JPanel() {
+//            @Override
+//            protected void paintComponent(Graphics g) {
+//                super.paintComponent(g);
+//                g.drawImage(image, 0, 0, null);
+//            }
+//        };
+//
+//
+//        frame.add(pane);
 
         //set up the buttons for the application
         buttonconfig();
